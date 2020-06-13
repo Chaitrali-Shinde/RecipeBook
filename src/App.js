@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import Recipes from './Recipes';
 import Axios from 'axios';
+import {Form, Button, Container} from 'react-bootstrap'
 
 const App= ()=>{
 
@@ -37,25 +38,33 @@ const App= ()=>{
   }
 
   return(
-  <div>
-    <h1>Recipe book</h1>
-      <form onSubmit= {getSearch}>
+  <div style={{background: "#eee2dc"}}>
+    <Container>
+    <center><h1 style= {{fontFamily: "serif", fontStyle: "italic", color: "grey"}}>Recipe Book</h1></center>
+      <Form onSubmit= {getSearch}>
+        <center>
         <input 
           type= "text" 
           placeholder= "search..."
           value= {search}
           onChange= {handleChange}
           />
-        <button  type="submit">Search</button>
-      </form>
-      {recipes. map(recipe=>(
-        <Recipes 
-        key={recipe.recipe.label}
-        title= {recipe.recipe.label} 
-        image= {recipe.recipe.image} 
-        calories= {recipe.recipe.calories}/>
-  ))}
-  </div>);
+        <Button type="submit" style={{marginLeft: 5}}>Search</Button>
+        </center>
+      </Form>
+      <div style={{display: "flex", justifyContent: "space-around", flexWrap: "wrap"}}>
+        {recipes. map(recipe=>(
+          <Recipes 
+          key={recipe.recipe.label}
+          title= {recipe.recipe.label} 
+          image= {recipe.recipe.image} 
+          calories= {recipe.recipe.calories}
+          ingredients= {recipe.recipe.ingredients}
+          url= {recipe.recipe.url}
+          />
+        
+  ))}</div>
+  </Container></div>);
 }
 
 export default App;
