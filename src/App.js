@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import Recipes from './Recipes';
 import Axios from 'axios';
-import {Form, Button, Container} from 'react-bootstrap'
+import {Form, Button, Container, Jumbotron} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 const App= ()=>{
 
@@ -39,8 +40,8 @@ const App= ()=>{
 
   return(
   <div style={{background: "#eee2dc"}}>
-    <Container>
     <center><h1 style= {{fontFamily: "serif", fontStyle: "italic", color: "grey"}}>Recipe Book</h1></center>
+      <Link to= "/tips"><Button>Tips</Button></Link>
       <Form onSubmit= {getSearch}>
         <center>
         <input 
@@ -52,6 +53,8 @@ const App= ()=>{
         <Button type="submit" style={{marginLeft: 5}}>Search</Button>
         </center>
       </Form>
+     
+      <Container>
       <div style={{display: "flex", justifyContent: "space-around", flexWrap: "wrap"}}>
         {recipes. map(recipe=>(
           <Recipes 
@@ -63,8 +66,10 @@ const App= ()=>{
           url= {recipe.recipe.url}
           />
         
-  ))}</div>
-  </Container></div>);
+  ))}
+  </div>
+  </Container>
+  </div>);
 }
 
 export default App;
